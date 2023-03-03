@@ -9,6 +9,8 @@ mod sifis_api;
 
 pub use app_label::AppLabel;
 pub use sifis_api::{ApiLabel, Hazard, HazardsKinds};
+use symbolic_common::Name;
+use symbolic_demangle::{Demangle, DemangleOptions};
 
 use std::fs::{read, File};
 use std::io::BufReader;
@@ -98,7 +100,7 @@ impl ManifestProducer {
     }
 }
 
-const SIFIS_SYMBOL: &str = "_ZN9sifis_api";
+const SIFIS_SYMBOL: &str = "sifis_api";
 
 fn read_binary<P: AsRef<Path>>(binary_path: P, sifis_api: SifisApi) -> Result<AppLabel> {
     let bin_data = read(binary_path)?;
@@ -108,8 +110,12 @@ fn read_binary<P: AsRef<Path>>(binary_path: P, sifis_api: SifisApi) -> Result<Ap
 
     let data_exp = file.symbols();
     for exp in data_exp {
-        if let Ok(name) = exp.name() {
-            if name.starts_with(SIFIS_SYMBOL) && !name.contains("closure") {
+        if let Ok(name) = exp.name().map(|name| {
+            let name = Name::from(name);
+            name.try_demangle(DemangleOptions::name_only()).to_string()
+        }) {
+            if name.starts_with(SIFIS_SYMBOL) && !name.contains("closure") && exp.is_global() {
+                println!("{name} {:?}", exp);
                 for api_label in &sifis_api.api_labels {
                     if name.contains(&api_label.api_name) {
                         output_api_labels.push(api_label.clone());
