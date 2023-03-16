@@ -13,6 +13,7 @@ async fn main() -> Result<(), sifis_api::Error> {
         };
         let brightness: u8 = lamp.get_brightness().await?;
         println!("{:<15} {:<7} {:<5} ", lamp.id, on_off, brightness);
+        lamp.turn_on().await?;
     }
 
     Ok(())
