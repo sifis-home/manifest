@@ -12,7 +12,7 @@ pub struct ApiLabel {
     /// API name
     pub api_name: String,
     /// API description
-    pub description: String,
+    pub api_description: String,
     /// API hazards information
     pub security_label: HazardsKinds,
 }
@@ -36,5 +36,5 @@ pub struct Hazard {
     /// Description
     pub description: String,
     /// Optional risk score
-    pub risk_score: Option<f64>,
+    pub risk_score: Option<u8>,
 }
