@@ -153,28 +153,28 @@ mod test {
                 sifis_version: "0.1".into(),
                 api_hazards: vec![
                     ApiLabel {
-                        api_name: "turn_light_on".into(),
-                        description: "Turns on a lamp.".into(),
+                        api_name: "turn_lamp_on".into(),
+                        api_description: "Turns on a lamp.".into(),
                         security_label: HazardsKinds {
                             safety: vec![
                                 Hazard {
-                                    name: "FIRE_HAZARD".into(),
+                                    name: "FireHazard".into(),
                                     description: "The execution may cause fire.".into(),
-                                    risk_score: None
+                                    risk_score: Some(2)
                                 }
                             ],
                             privacy: vec![
                                 Hazard {
-                                    name: "LOG_ENERGY_CONSUMPTION".into(),
+                                    name: "LogEnergyConsumption".into(),
                                     description: "The execution allows the app to register information about energy consumption.".into(),
                                     risk_score: None
                                 }
                             ],
                             financial: vec![
                                 Hazard {
-                                    name: "ELECTRIC_ENERGY_CONSUMPTION".into(),
+                                    name: "ElectricEnergyConsumption".into(),
                                     description: "The execution enables the device to consume further electricity.".into(),
-                                    risk_score: Some(0.8)
+                                    risk_score: Some(5)
                                 }
                             ]
                         }
