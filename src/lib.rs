@@ -8,7 +8,7 @@ mod error;
 mod sifis_api;
 
 pub use app_label::AppLabel;
-pub use sifis_api::{ApiLabel, Hazard, HazardsKinds};
+pub use sifis_api::{ApiLabel, Functionality, Hazard, HazardsKinds};
 use symbolic_common::Name;
 use symbolic_demangle::{Demangle, DemangleOptions};
 
@@ -148,13 +148,19 @@ mod test {
 
         assert_eq!(application_manifest,
             AppLabel {
-                name: "app_name".into(),
-                description: "app_description".into(),
+                app_name: "app_name".into(),
+                app_description: "app_description".into(),
                 sifis_version: "0.1".into(),
-                api_hazards: vec![
+                api_labels: vec![
                     ApiLabel {
                         api_name: "turn_lamp_on".into(),
                         api_description: "Turns on a lamp.".into(),
+                        behavior_label: vec![
+                            Functionality {
+                                device_type: "lamp".into(),
+                                action: "turn_on".into(),
+                            }
+                        ],
                         security_label: HazardsKinds {
                             safety: vec![
                                 Hazard {

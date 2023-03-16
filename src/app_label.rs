@@ -6,27 +6,27 @@ use crate::sifis_api::ApiLabel;
 #[derive(Debug, Serialize, PartialEq)]
 pub struct AppLabel {
     /// Application name
-    pub name: String,
+    pub app_name: String,
     /// Application description
-    pub description: String,
+    pub app_description: String,
     /// Sifis library version
     pub sifis_version: String,
     /// List of hazards associated to API
-    pub api_hazards: Vec<ApiLabel>,
+    pub api_labels: Vec<ApiLabel>,
 }
 
 impl AppLabel {
     pub(crate) fn new<S: AsRef<str>>(
-        name: S,
-        description: S,
+        app_name: S,
+        app_description: S,
         sifis_version: S,
-        api_hazards: Vec<ApiLabel>,
+        api_labels: Vec<ApiLabel>,
     ) -> Self {
         Self {
-            name: name.as_ref().into(),
-            description: description.as_ref().into(),
+            app_name: app_name.as_ref().into(),
+            app_description: app_description.as_ref().into(),
             sifis_version: sifis_version.as_ref().into(),
-            api_hazards,
+            api_labels,
         }
     }
 }
