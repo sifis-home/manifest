@@ -1,77 +1,77 @@
-{ 
-  "version": "0.1", 
-  "api_labels": [ 
-    { 
-      "api_name": "turn_lamp_on", 
-      "api_description": "Turns on a lamp.", 
-      "behavior_label": [ 
-        { 
-          "device_type": "lamp", 
-          "action": "turn_on" 
-        } 
-      ], 
-      "security_label": { 
-        "safety": [ 
-          { 
-            "name": "FireHazard", 
-            "description": "The execution may cause fire.", 
-            "risk_score": 2 
-          } 
-        ], 
-        "privacy": [ 
-          { 
-            "name": "LogEnergyConsumption", 
-            "description": "The execution allows the app to register information about energy consumption." 
-          } 
-        ], 
-        "financial": [ 
-          { 
-            "name": "ElectricEnergyConsumption", 
-            "description": "The execution enables the device to consume further electricity.", 
-            "risk_score": 5 
-          } 
-        ] 
-      } 
-    }, 
-    { 
-      "api_name": "turn_oven_on", 
-      "api_description": "Turns on an oven at the last selected temperature.", 
-      "behavior_label": [ 
-        { 
-          "device_type": "oven", 
-          "action": "turn_on" 
-        } 
-      ], 
-      "security_label": { 
-        "safety": [ 
-          { 
-            "name": "FireHazard", 
-            "description": "The execution may cause fire." 
-          }, 
-          { 
-            "name": "AudioVideoStream", 
-            "description": "The execution authorises the app to obtain a video stream with audio." 
-          }, 
-          { 
-            "name": "PowerOutage", 
-            "description": "High instantaneous power. The execution may cause power outage.", 
-            "risk_score": 8 
-          } 
-        ], 
-        "privacy": [ 
-          { 
-            "name": "LogEnergyConsumption", 
-            "description": "The execution allows the app to register information about energy consumption." 
-          } 
-        ], 
-        "financial": [ 
-          { 
-            "name": "ElectricEnergyConsumption", 
-            "description": "The execution enables the device to consume further electricity.", 
-            "risk_score": 8 
-          } 
-        ] 
-      } 
-    } 
-  ] 
-} 
+{
+  "version": "0.1",
+  "api_labels": [
+    {
+      "api_name": "turn_lamp_on",
+      "api_description": "Turns on a lamp.",
+      "behavior_label": [
+        {
+          "device_type": "lamp",
+          "action": "turn_on"
+        }
+      ],
+      "security_label": {
+        "safety": [
+          {
+            "name": "FireHazard",
+            "description": "The execution may cause fire.",
+            "risk_score": 2
+          }
+        ],
+        "privacy": [
+          {
+            "name": "LogEnergyConsumption",
+            "description": "The execution allows the app to register information about energy consumption."
+          }
+        ],
+        "financial": [
+          {
+            "name": "ElectricEnergyConsumption",
+            "description": "The execution enables the device to consume further electricity.",
+            "risk_score": 5
+          }
+        ]
+      }
+    },
+    {
+      "api_name": "turn_oven_on",
+      "api_description": "Turns on an oven at the last selected temperature.",
+      "behavior_label": [
+        {
+          "device_type": "oven",
+          "action": "turn_on"
+        }
+      ],
+      "security_label": {
+        "safety": [
+          {
+            "name": "FireHazard",
+            "description": "The execution may cause fire."
+          },
+          {
+            "name": "AudioVideoStream",
+            "description": "The execution authorises the app to obtain a video stream with audio."
+          },
+          {
+            "name": "PowerOutage",
+            "description": "High instantaneous power. The execution may cause power outage.",
+            "risk_score": 8
+          }
+        ],
+        "privacy": [
+          {
+            "name": "LogEnergyConsumption",
+            "description": "The execution allows the app to register information about energy consumption."
+          }
+        ],
+        "financial": [
+          {
+            "name": "ElectricEnergyConsumption",
+            "description": "The execution enables the device to consume further electricity.",
+            "risk_score": 8
+          }
+        ]
+      }
+    }
+  ]
+}
