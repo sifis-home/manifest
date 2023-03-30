@@ -1,9 +1,10 @@
+use serde::Deserialize;
 use serde::Serialize;
 
 use crate::sifis_api::ApiLabel;
 
 /// Sifis application information.
-#[derive(Debug, Serialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct AppLabel {
     /// Application name
     pub app_name: String,
