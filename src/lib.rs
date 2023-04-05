@@ -19,6 +19,7 @@ use std::io::Write;
 use std::path::Path;
 
 use object::{Object, ObjectSymbol};
+use tracing::debug;
 
 use error::{Error, Result};
 use sifis_api::SifisApi;
@@ -116,7 +117,7 @@ fn read_binary<P: AsRef<Path>>(binary_path: P, sifis_api: SifisApi) -> Result<Ap
             name.try_demangle(DemangleOptions::name_only()).to_string()
         }) {
             if name.starts_with(SIFIS_SYMBOL) && !name.contains("closure") && exp.is_global() {
-                println!("{name} {:?}", exp);
+                debug!("{name} {:?}", exp);
                 for api_label in &sifis_api.api_labels {
                     if name.contains(&api_label.api_name) {
                         output_api_labels.push(api_label.clone());
