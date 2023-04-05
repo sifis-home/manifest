@@ -9,6 +9,7 @@ mod sifis_api;
 
 pub use app_label::AppLabel;
 pub use sifis_api::{ApiLabel, Functionality, Hazard, HazardsKinds};
+
 use symbolic_common::Name;
 use symbolic_demangle::{Demangle, DemangleOptions};
 
