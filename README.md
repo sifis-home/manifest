@@ -45,13 +45,13 @@ cargo run -- --help
 To write a *manifest* on `stdout` run:
 
 ```
-cargo run -- -b /path/to/your/binary -s /path/to/your/sifis-home/library/api/labels/file
+cargo run -- -b /path/to/your/binary -l /path/to/your/sifis-home/library/api/labels/file
 ```
 
 To write a *manifest* on a file run:
 
 ```
-cargo run -- -b /path/to/your/binary -s /path/to/your/sifis-home/library/api/labels/file -o /path/to/your/manifest
+cargo run -- -b /path/to/your/binary -l /path/to/your/sifis-home/library/api/labels/file -o /path/to/your/manifest/file
 ```
 
 ## License
