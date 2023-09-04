@@ -14,7 +14,6 @@ use symbolic_common::Name;
 use symbolic_demangle::{Demangle, DemangleOptions};
 
 use std::fs::{read, File};
-use std::io::BufReader;
 use std::io::Write;
 use std::path::Path;
 
@@ -23,6 +22,11 @@ use tracing::debug;
 
 use error::{Error, Result};
 use sifis_api::SifisApi;
+
+// Permanent part of the link to the GitHub repository containing the file
+// associated to the version chosen by a developer
+const GITHUB_PERMANENT_LINK: &str =
+    "https://raw.githubusercontent.com/sifis-home/manifest/master/data";
 
 /// Produce a manifest file from the hazards associated to the SIFIS-API
 /// contained in a binary.
@@ -53,19 +57,12 @@ impl ManifestProducer {
     pub fn run<P: AsRef<Path>>(
         self,
         binary_path: P,
-        sifis_api_path: P,
+        library_version: &str,
         manifest_path: Option<P>,
     ) -> Result<AppLabel> {
         // Check if binary path is a file.
         if binary_path.as_ref().is_dir() {
             return Err(Error::FormatPath("Path to binary MUST be a file path"));
-        }
-
-        // Check if library label path is a file.
-        if sifis_api_path.as_ref().is_dir() {
-            return Err(Error::FormatPath(
-                "Path to SIFIS API information MUST be a file path",
-            ));
         }
 
         // Check if output path is a file.
@@ -76,10 +73,15 @@ impl ManifestProducer {
             return Err(Error::FormatPath("Path to manifest MUST be a file path"));
         }
 
-        // Read SIFIS-HOME library version and APIs information
-        let file = File::open(sifis_api_path)?;
-        let reader = BufReader::new(file);
-        let hazards: SifisApi = serde_json::from_reader(reader)?;
+        // Download SIFIS-HOME library version and retrieve hazards and APIs
+        // information
+        let response_body = ureq::get(&format!(
+            "{GITHUB_PERMANENT_LINK}/{library_version}/library-api-hazards-{library_version}.json"
+        ))
+        .call()
+        .map_err(Box::new)?
+        .into_string()?;
+        let hazards: SifisApi = serde_json::from_str(&response_body)?;
 
         // Obtain application manifest
         let application_manifest = read_binary(binary_path, hazards)?;
@@ -140,12 +142,12 @@ mod test {
     use super::*;
 
     const BINARY_PATH: &str = "demo-binary/demo-binary";
-    const SIFIS_API_PATH: &str = "data/library-api-labels.json";
+    const SIFIS_API_VERSION: &str = "0.1";
 
     #[test]
     fn check_app_label() {
         let application_manifest = ManifestProducer::new()
-            .run(BINARY_PATH, SIFIS_API_PATH, None)
+            .run(BINARY_PATH, SIFIS_API_VERSION, None)
             .unwrap();
 
         assert_eq!(application_manifest,

@@ -10,9 +10,9 @@ struct Opts {
     /// Path to the binary to be analyzed
     #[clap(short, value_parser)]
     binary_path: PathBuf,
-    /// Path to the SIFIS-Home library API labels
+    /// SIFIS-Home library API version for hazards
     #[clap(short, value_parser)]
-    library_api_labels_path: PathBuf,
+    library_version: String,
     /// Output path of the produced manifest
     #[clap(short, value_parser)]
     output_path: Option<PathBuf>,
@@ -44,10 +44,6 @@ fn main() {
 
     ManifestProducer::new()
         .enable_write()
-        .run(
-            opts.binary_path,
-            opts.library_api_labels_path,
-            opts.output_path,
-        )
+        .run(opts.binary_path, &opts.library_version, opts.output_path)
         .unwrap();
 }

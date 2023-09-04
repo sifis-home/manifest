@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize)]
+#[derive(Debug, Deserialize)]
 pub(crate) struct SifisApi {
     pub(crate) version: String,
     pub(crate) api_labels: Vec<ApiLabel>,
