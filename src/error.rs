@@ -12,9 +12,9 @@ pub enum Error {
     #[error("Object error")]
     /// A object output error.
     ObjectOutput(#[from] object::Error),
-    #[error("Ureq error")]
-    /// A ureq error.
-    UreqOutput(#[from] Box<ureq::Error>),
+    #[error("Reqwest error")]
+    /// A reqwest error.
+    UreqOutput(#[from] reqwest::Error),
     #[error("Json error")]
     /// A Json output error.
     JsonOutput(#[from] serde_json::Error),
