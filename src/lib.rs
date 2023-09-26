@@ -165,25 +165,25 @@ mod test {
                         ],
                         security_label: HazardsKinds {
                             safety: vec![
-                                Hazard {
+                                Some(Hazard {
                                     name: "FireHazard".into(),
                                     description: "The execution may cause fire.".into(),
                                     risk_score: Some(2)
-                                }
+                                })
                             ],
                             privacy: vec![
-                                Hazard {
+                                Some(Hazard {
                                     name: "LogEnergyConsumption".into(),
                                     description: "The execution allows the app to register information about energy consumption.".into(),
                                     risk_score: None
-                                }
+                                })
                             ],
                             financial: vec![
-                                Hazard {
+                                Some(Hazard {
                                     name: "ElectricEnergyConsumption".into(),
                                     description: "The execution enables the device to consume further electricity.".into(),
                                     risk_score: Some(5)
-                                }
+                                })
                             ]
                         }
                     }

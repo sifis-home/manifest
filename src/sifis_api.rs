@@ -32,11 +32,11 @@ pub struct Functionality {
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct HazardsKinds {
     /// Safety hazards
-    pub safety: Vec<Hazard>,
+    pub safety: Vec<Option<Hazard>>,
     /// Privacy hazards
-    pub privacy: Vec<Hazard>,
+    pub privacy: Vec<Option<Hazard>>,
     /// Financial hazards
-    pub financial: Vec<Hazard>,
+    pub financial: Vec<Option<Hazard>>,
 }
 
 /// Hazard information,

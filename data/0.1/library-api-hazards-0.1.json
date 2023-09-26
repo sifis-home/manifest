@@ -1,77 +1,184 @@
 {
-  "version": "0.1",
-  "api_labels": [
-    {
-      "api_name": "turn_lamp_on",
-      "api_description": "Turns on a lamp.",
-      "behavior_label": [
+    "version": "0.1",
+    "api_labels": [
         {
-          "device_type": "lamp",
-          "action": "turn_on"
-        }
-      ],
-      "security_label": {
-        "safety": [
-          {
-            "name": "FireHazard",
-            "description": "The execution may cause fire.",
-            "risk_score": 2
-          }
-        ],
-        "privacy": [
-          {
-            "name": "LogEnergyConsumption",
-            "description": "The execution allows the app to register information about energy consumption."
-          }
-        ],
-        "financial": [
-          {
-            "name": "ElectricEnergyConsumption",
-            "description": "The execution enables the device to consume further electricity.",
-            "risk_score": 5
-          }
-        ]
-      }
-    },
-    {
-      "api_name": "turn_oven_on",
-      "api_description": "Turns on an oven at the last selected temperature.",
-      "behavior_label": [
+            "api_name": "turn_lamp_on",
+            "api_description": "Turns on a lamp.",
+            "behavior_label": [
+                {
+                    "device_type": "lamp",
+                    "action": "turn_on"
+                }
+            ],
+            "security_label": {
+                "safety": [
+                    {
+                        "name": "FireHazard",
+                        "description": "The execution may cause fire.",
+                        "risk_score": 2
+                    }
+                ],
+                "privacy": [
+                    {
+                        "name": "LogEnergyConsumption",
+                        "description": "The execution allows the app to register information about energy consumption."
+                    }
+                ],
+                "financial": [
+                    {
+                        "name": "ElectricEnergyConsumption",
+                        "description": "The execution enables the device to consume further electricity.",
+                        "risk_score": 5
+                    }
+                ]
+            }
+        },
         {
-          "device_type": "oven",
-          "action": "turn_on"
+            "api_name": "turn_oven_on",
+            "api_description": "Turns on an oven at the last selected temperature.",
+            "behavior_label": [
+                {
+                    "device_type": "oven",
+                    "action": "turn_on"
+                }
+            ],
+            "security_label": {
+                "safety": [
+                    {
+                        "name": "FireHazard",
+                        "description": "The execution may cause fire."
+                    },
+                    {
+                        "name": "AudioVideoStream",
+                        "description": "The execution authorises the app to obtain a video stream with audio."
+                    },
+                    {
+                        "name": "PowerOutage",
+                        "description": "High instantaneous power. The execution may cause power outage.",
+                        "risk_score": 8
+                    }
+                ],
+                "privacy": [
+                    {
+                        "name": "LogEnergyConsumption",
+                        "description": "The execution allows the app to register information about energy consumption."
+                    }
+                ],
+                "financial": [
+                    {
+                        "name": "ElectricEnergyConsumption",
+                        "description": "The execution enables the device to consume further electricity.",
+                        "risk_score": 8
+                    }
+                ]
+            }
+        },
+        {
+            "api_name": "is_open",
+            "api_description": "Check whether a door is opened or closed.",
+            "behavior_label": [
+                {
+                    "device_type": "door",
+                    "action": "is_open"
+                }
+            ],
+            "security_label": {
+                "safety": [
+                    {
+                        "name": "UnauthorisedPhysicalAccess",
+                        "description": "The execution disables a protection mechanism and unauthorised individuals may physically enter home.",
+                        "risk_score": 2
+                    }
+                ],
+                "privacy": [],
+                "financial": []
+            }
+        },
+        {
+            "api_name": "set_target_temperature",
+            "api_description": "Increase or decrease the device temperature.",
+            "behavior_label": [
+                {
+                    "device_type": "fridge",
+                    "action": "set_target_temperature"
+                }
+            ],
+            "security_label": {
+                "safety": [
+                    {
+                        "name": "SpoiledFood",
+                        "description": "The execution may lead to rotten food.",
+                        "risk_score": 2
+                    }
+                ],
+                "privacy": [
+                    {
+                        "name": "LogEnergyConsumption",
+                        "description": "The execution allows the app to register information about energy consumption."
+                    }
+                ],
+                "financial": [
+                    {
+                        "name": "ElectricEnergyConsumption",
+                        "description": "The execution enables the device to consume further electricity.",
+                        "risk_score": 8
+                    }
+                ]
+            }
+        },
+        {
+            "api_name": "open_drain",
+            "api_description": "Open device drain.",
+            "behavior_label": [
+                {
+                    "device_type": "sink",
+                    "action": "open_drain"
+                }
+            ],
+            "security_label": {
+                "safety": [
+                    {
+                        "name": "WaterFlooding",
+                        "description": "The execution allows water usage which may lead to flood.",
+                        "risk_score": 2
+                    }
+                ],
+                "privacy": [],
+                "financial": [
+                    {
+                        "name": "WaterConsumption",
+                        "description": "The execution enables a device that consumes water.",
+                        "risk_score": 8
+                    }
+                ]
+            }
+        },
+        {
+            "api_name": "set_flow",
+            "api_description": "Set device flow.",
+            "behavior_label": [
+                {
+                    "device_type": "sink",
+                    "action": "set_flow"
+                }
+            ],
+            "security_label": {
+                "safety": [
+                    {
+                        "name": "WaterFlooding",
+                        "description": "The execution allows water usage which may lead to flood.",
+                        "risk_score": 4
+                    }
+                ],
+                "privacy": [],
+                "financial": [
+                    {
+                        "name": "WaterConsumption",
+                        "description": "The execution enables a device that consumes water.",
+                        "risk_score": 8
+                    }
+                ]
+            }
         }
-      ],
-      "security_label": {
-        "safety": [
-          {
-            "name": "FireHazard",
-            "description": "The execution may cause fire."
-          },
-          {
-            "name": "AudioVideoStream",
-            "description": "The execution authorises the app to obtain a video stream with audio."
-          },
-          {
-            "name": "PowerOutage",
-            "description": "High instantaneous power. The execution may cause power outage.",
-            "risk_score": 8
-          }
-        ],
-        "privacy": [
-          {
-            "name": "LogEnergyConsumption",
-            "description": "The execution allows the app to register information about energy consumption."
-          }
-        ],
-        "financial": [
-          {
-            "name": "ElectricEnergyConsumption",
-            "description": "The execution enables the device to consume further electricity.",
-            "risk_score": 8
-          }
-        ]
-      }
-    }
-  ]
+    ]
 }
