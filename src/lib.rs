@@ -116,7 +116,7 @@ fn read_binary<P: AsRef<Path>>(binary_path: P, sifis_api: SifisApi) -> Result<Ap
             let name = Name::from(name);
             name.try_demangle(DemangleOptions::name_only()).to_string()
         }) {
-            if name.starts_with(SIFIS_SYMBOL) && !name.contains("closure") && exp.is_global() {
+            if name.contains(SIFIS_SYMBOL) {
                 debug!("{name} {:?}", exp);
                 for api_label in &sifis_api.api_labels {
                     if name.contains(&api_label.api_name) {
@@ -155,7 +155,7 @@ mod test {
                 sifis_version: "0.1".into(),
                 api_labels: vec![
                     ApiLabel {
-                        api_name: "turn_lamp_on".into(),
+                        api_name: "turn_on".into(),
                         api_description: "Turns on a lamp.".into(),
                         behavior_label: vec![
                             Functionality {
