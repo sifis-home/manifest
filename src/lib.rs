@@ -112,7 +112,7 @@ impl ManifestProducer {
     }
 }
 
-const SIFIS_SYMBOL: &str = "sifis_api";
+const SIFIS_SYMBOL: &str = "sifis_api::service::SifisApiClient";
 
 fn read_binary<P: AsRef<Path>>(binary_path: P, sifis_api: SifisApi) -> Result<AppLabel> {
     let bin_data = read(binary_path)?;
