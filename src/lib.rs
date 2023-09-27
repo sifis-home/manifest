@@ -73,11 +73,11 @@ impl ManifestProducer {
             return Err(Error::FormatPath("Path to manifest MUST be a file path"));
         }
 
-        let response_body = if library_version.starts_with("file://") {
-            std::fs::read_to_string(&library_version[7..])?
+        let response_body = if let Some(stripped_path) = library_version.strip_prefix("file://") {
+            std::fs::read_to_string(stripped_path)?
         } else {
             // If it contains a / assume a full path
-            let hazards_path = if library_version.contains("/") {
+            let hazards_path = if library_version.contains('/') {
                 library_version.to_owned()
             } else {
                 format!(
