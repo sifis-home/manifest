@@ -1,6 +1,6 @@
 [package]
 name = "manifest"
-version = "0.3.0"
+version = "0.4.0"
 description = """
 Produces a manifest file from the hazards associated to the SIFIS-API
 contained in a binary.
