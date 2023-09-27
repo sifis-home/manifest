@@ -8,6 +8,3 @@ edition = "2021"
 [dependencies]
 sifis-api = { git = "https://github.com/sifis-home/sifis-api.git" }
 tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
-
-[profile.release]
-lto = true
