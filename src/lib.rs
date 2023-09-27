@@ -73,12 +73,22 @@ impl ManifestProducer {
             return Err(Error::FormatPath("Path to manifest MUST be a file path"));
         }
 
-        // Download SIFIS-HOME library version and retrieve hazards and APIs
-        // information
-        let response_body = reqwest::blocking::get(format!(
-            "{GITHUB_PERMANENT_LINK}/{library_version}/library-api-hazards-{library_version}.json"
-        ))?
-        .text()?;
+        let response_body = if library_version.starts_with("file://") {
+            std::fs::read_to_string(&library_version[7..])?
+        } else {
+            // If it contains a / assume a full path
+            let hazards_path = if library_version.contains("/") {
+                library_version.to_owned()
+            } else {
+                format!(
+            "{GITHUB_PERMANENT_LINK}/{library_version}/library-api-hazards-{library_version}.json")
+            };
+
+            // Download SIFIS-HOME library version and retrieve hazards and APIs
+            // information
+            reqwest::blocking::get(hazards_path)?.text()?
+        };
+
         let hazards: SifisApi = serde_json::from_str(&response_body)?;
 
         // Obtain application manifest
