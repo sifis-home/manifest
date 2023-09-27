@@ -150,12 +150,12 @@ mod test {
     use super::*;
 
     const BINARY_PATH: &str = "demo-binary/demo-binary";
-    const SIFIS_API_VERSION: &str = "0.1";
+    const SIFIS_API: &str = "file://./data/0.1/library-api-hazards-0.1.json";
 
     #[test]
     fn check_app_label() {
         let application_manifest = ManifestProducer::new()
-            .run(BINARY_PATH, SIFIS_API_VERSION, None)
+            .run(BINARY_PATH, SIFIS_API, None)
             .unwrap();
 
         assert_eq!(application_manifest,
