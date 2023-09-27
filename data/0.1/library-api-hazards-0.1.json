@@ -34,7 +34,7 @@
             }
         },
         {
-            "api_name": "is_open",
+            "api_name": "get_door_open",
             "api_description": "Check whether a door is opened or closed.",
             "behavior_label": [
                 {
@@ -55,7 +55,7 @@
             }
         },
         {
-            "api_name": "set_target_temperature",
+            "api_name": "set_fridge_target_temperature",
             "api_description": "Increase or decrease the device temperature.",
             "behavior_label": [
                 {
@@ -87,7 +87,7 @@
             }
         },
         {
-            "api_name": "set_flow",
+            "api_name": "set_sink_flow",
             "api_description": "Set device flow.",
             "behavior_label": [
                 {
