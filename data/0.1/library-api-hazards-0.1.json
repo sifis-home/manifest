@@ -112,6 +112,33 @@
                     }
                 ]
             }
+        },
+        {
+            "api_name": "close_sink_drain",
+            "api_description": "Close the drain.",
+            "behavior_label": [
+                {
+                    "device_type": "sink",
+                    "action": "close_drain"
+                }
+            ],
+            "security_label": {
+                "safety": [
+                    {
+                        "name": "WaterFlooding",
+                        "description": "The execution allows water usage which may lead to flood.",
+                        "risk_score": 4
+                    }
+                ],
+                "privacy": [],
+                "financial": [
+                    {
+                        "name": "WaterConsumption",
+                        "description": "The execution enables a device that consumes water.",
+                        "risk_score": 8
+                    }
+                ]
+            }
         }
     ]
 }
